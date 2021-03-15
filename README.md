@@ -11,13 +11,14 @@
 
 5. Instalar el módulo del ESP32 en el gestor de tarjetas, asegurarse de instalar la versión 1.0.4
 6. Instalar las siguientes librerías:
-    * PubSubClient
-    * NTPClient
     * Adafruit BME680 Library (incluir dependencias)
-    * DallasTemperature (incluir OneWire)
+    * Adafruit Feather Oled
     * Adafruit PM25 AQI Sensor
     * BSEC Sofware Library
-7. Navegar a la carpeta de instalación del esp32 y reemplazar el archivo `platform.txt` con el que se encuentra en el repositorio. La debe lucir de la siguiente forma: `.arduino15/packages/esp32/hardware/esp32/1.0.4`
+    * DallasTemperature (incluir OneWire)
+    * NTPClient
+    * PubSubClient
+7. Navegar a la carpeta de instalación del esp32 y renombrar el archivo `platform.txt` a `platform.txt.bk`. Luego, copiar y pegar el archivo que se encuentra en el repositorio dentro de `arduino15/packages/esp32/hardware/esp32/1.0.4`. 
 8. Seleccionar la tarjeta `ESP32 Wrover Module` y compilar.
 
 
