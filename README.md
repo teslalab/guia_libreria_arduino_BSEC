@@ -1,7 +1,7 @@
 # Guia de Implementación de Libreria BSEC de Bosch en Arduino IDE
 
 ## Pasos A Seguir:
-1. Instalar Arduino IDE
+1. Instalar Arduino IDE (no usar el zip)
 2. Instalar GIT
 3. Clonar repositorio
 4. Agregar el siguiente URL al Gestor de URLs Adicionales de Tarjetas:
@@ -12,7 +12,7 @@
 5. Instalar el módulo del ESP32 en el gestor de tarjetas, asegurarse de instalar la versión 1.0.4
 6. Instalar las siguientes librerías:
     * Adafruit BME680 Library (incluir dependencias)
-    * Adafruit Feather Oled
+    * Adafruit Feather Oled (incluir dependencias)
     * Adafruit PM25 AQI Sensor
     * BSEC Sofware Library
     * DallasTemperature (incluir OneWire)
