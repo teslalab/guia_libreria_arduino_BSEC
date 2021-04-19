@@ -22,8 +22,8 @@
 
 //Credenciales para poder conectarnos a la red-WiFi sustituya dentro de las comillas
 
-  const char* ssid = "Cuarto_De_Juego"; //Sustituya NOMBRE_WiFi por el nombre de su red WiFi
-  const char* password = "A15004127";	//Sustituya Contraseña_WiFi por su contraseña de red WiFi
+  const char* ssid = "Rigby"; //Sustituya NOMBRE_WiFi por el nombre de su red WiFi
+  const char* password = "PanConPollo";	//Sustituya Contraseña_WiFi por su contraseña de red WiFi
 
 
   const char *user = "aquality";
@@ -38,7 +38,7 @@
 //Nombre del Servidor MQTT
   const char* mqtt_server = "galiot.galileo.edu";
   //Modificar al nombre que se asigne en el dashboard.
-  #define TEAM_NAME "airmon/S001"  
+  #define TEAM_NAME "/airmon/S001"  
 
 //Declaración de funciones de ayuda
   void checkIaqSensorStatus(void);
@@ -142,7 +142,7 @@ void loop() {
   {
     if (mqtt_client.connect(clientID, user, passwd))
     {
-      Serial.println("Client connected to mqtt");
+      //Serial.println("Client connected to mqtt");
     }
     String str69 = "Estacion en línea";
     str69.toCharArray(msg, 50);
@@ -151,6 +151,7 @@ void loop() {
 
   if ((timeClient.getMinutes() % 5 == 00) && (timeClient.getSeconds() == 00) && publicar_flag)
   {
+    Serial.print("5 minutos publicando");
     publicarDatos();
     Serial.print("Datos publicados en MQTT Server: ");
     publicar_flag = false;
@@ -205,7 +206,7 @@ void publish(char* topic, char* payload) {
 }
 
 char* getTopic(char* topic) {
-  sprintf(topic_name, "/%s/%s", TEAM_NAME, topic);
+  sprintf(topic_name, "%s/%s", TEAM_NAME, topic);
   return topic_name;
 }
 
@@ -312,7 +313,7 @@ void publicarDatos()
     (mqtt_client.publish(getTopic("AQIa"), msg)) ? enviados += "Index Air Quality Accuracy enviado\n" : faltantes += "Index Air Quality Accuracy\n";
 
     //************ Posteamos el Gas Resistence ************
-    gas = (bme.gasResistance) / 1000;
+    gas = (iaqSensor.gasResistance) / 1000;
     Serial.println("Gas Resistance kOhms: " + String(gas));
     String(gas).toCharArray(msg, 50);
     (mqtt_client.publish(getTopic("gas"), msg)) ? enviados += "Gas Resistance kOhms enviado\n" : faltantes += "Gas Resistance kOhms\n";
@@ -404,7 +405,7 @@ void preHeatSensor(){
     output2 += ", " + String(iaqSensor.staticIaq);
     output2 += ", " + String(iaqSensor.co2Equivalent);
     output2 += ", " + String(iaqSensor.breathVocEquivalent);
-    Serial.println(output2);
+    //Serial.println(output2);
    
     
   } else {
