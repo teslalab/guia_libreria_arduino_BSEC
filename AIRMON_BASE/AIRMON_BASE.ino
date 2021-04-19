@@ -24,7 +24,11 @@
 
   const char* ssid = "Cuarto_De_Juego"; //Sustituya NOMBRE_WiFi por el nombre de su red WiFi
   const char* password = "A15004127";	//Sustituya Contraseña_WiFi por su contraseña de red WiFi
-  const char *clientID = "ioht_gabriel_1";
+
+
+  const char *user = "aquality";
+  const char *passwd = "$Air333";
+  const char *clientID = "airmon_1";
 
 
 
@@ -272,37 +276,37 @@ void publicarDatos()
   {
     Serial.println("Cliente conectado a MQTT Server");
     //************ Posteamos la temperatura ************
-    temp = bme.temperature;
+    temp = iaqSensor.temperature;
     Serial.println("Temperatura : " + String(temp));
     String(temp).toCharArray(msg, 50);
     (mqtt_client.publish(getTopic("temp"), msg)) ? enviados += "Temperatura enviada\n" : faltantes += "Temperatura\n";
 
     //************ Posteamos la humedad ************
-    hume = bme.humidity;
+    hume = iaqSensor.humidity;
     Serial.println("Humedad : " + String(hume));
     String(hume).toCharArray(msg, 50);
     (mqtt_client.publish(getTopic("hume"), msg)) ? enviados += "Humedad enviada\n" : faltantes += "Humedad\n";
 
     //************ Posteamos la Presion Atmosferica ************
-    pres = bme.pressure;
+    pres = iaqSensor.pressure;
     Serial.println("Presion Atmosferica : " + String(pres));
     String(pres).toCharArray(msg, 50);
     (mqtt_client.publish(getTopic("pres"), msg)) ? enviados += "Presion Atmosferica  enviada\n" : faltantes += "Presion Atmosferica \n";
 
     //************ Posteamos el Index Air Quality ************
-    aqi = bme.iaq;
+    aqi = iaqSensor.iaq;
     Serial.println("Air Quality Index: " + String(aqi));
     String(aqi).toCharArray(msg, 50);
     (mqtt_client.publish(getTopic("aqi"), msg)) ? enviados += "Air Quality Index enviado\n" : faltantes += "Air Quality Index\n";
 
     //************ Posteamos el Static Index Air Quality ************
-    sAQI = bme.staticIaq;
+    sAQI = iaqSensor.staticIaq;
     Serial.println("Static Air Quality Index: " + String(sAQI));
     String(sAQI).toCharArray(msg, 50);
     (mqtt_client.publish(getTopic("sAQI"), msg)) ? enviados += "Static Air Quality Index enviado\n" : faltantes += "Index Air Quality\n";
 
     //************ Posteamos el Index Air Quality Accurary ************
-    AQIa = bme.iaqAccuracy;
+    AQIa = iaqSensor.iaqAccuracy;
     Serial.println("Index Air Quality Accuracy : " + String(AQIa));
     String(AQIa).toCharArray(msg, 50);
     (mqtt_client.publish(getTopic("AQIa"), msg)) ? enviados += "Index Air Quality Accuracy enviado\n" : faltantes += "Index Air Quality Accuracy\n";
@@ -314,13 +318,13 @@ void publicarDatos()
     (mqtt_client.publish(getTopic("gas"), msg)) ? enviados += "Gas Resistance kOhms enviado\n" : faltantes += "Gas Resistance kOhms\n";
 
     //************ Posteamos el CO2 Equivalente ************
-    CO2e = bme.co2Equivalent;
+    CO2e = iaqSensor.co2Equivalent;
     Serial.println("CO2 Equivalente : " + String(CO2e));
     String(CO2e).toCharArray(msg, 50);
     (mqtt_client.publish(getTopic("CO2e"), msg)) ? enviados += "CO2 Equivalente enviado\n" : faltantes += "CO2 Equivalente\n";
 
     //************ Posteamos el VOC Equivalente ************
-    VOCe = bme.breathVocEquivalent;
+    VOCe = iaqSensor.breathVocEquivalent;
     Serial.println("VOC Equivalente : " + String(VOCe));
     String(VOCe).toCharArray(msg, 50);
     (mqtt_client.publish(getTopic("VOCe"), msg)) ? enviados += "VOC Equivalente enviado\n" : faltantes += "VOC Equivalente \n";
