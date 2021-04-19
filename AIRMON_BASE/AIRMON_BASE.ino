@@ -24,6 +24,7 @@
 
   const char* ssid = "Cuarto_De_Juego"; //Sustituya NOMBRE_WiFi por el nombre de su red WiFi
   const char* password = "A15004127";	//Sustituya Contraseña_WiFi por su contraseña de red WiFi
+  const char *clientID = "ioht_gabriel_1";
 
 
 
